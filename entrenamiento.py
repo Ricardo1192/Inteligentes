@@ -10,37 +10,57 @@ from keras.layers import InputLayer,Input,Conv2D, MaxPool2D,Reshape,Dense,Flatte
 def cargarDatos(rutaOrigen,numeroCategorias,limite,ancho,alto):
     imagenesCargadas=[]
     valorEsperado=[]
-    for categoria in range(0,numeroCategorias):
-        for idImagen in range(0,limite[categoria]):
-            ruta=rutaOrigen+str(categoria)+"/"+str(categoria)+"_"+str(idImagen)+".jpg"
-            print(ruta)
-            imagen = cv2.imread(ruta)
-            imagen = cv2.cvtColor(imagen, cv2.COLOR_BGR2GRAY)
-            imagen = cv2.resize(imagen, (ancho, alto))
-            imagen = imagen.flatten()
-            imagen = imagen / 255
-            imagenesCargadas.append(imagen)
-            probabilidades = np.zeros(numeroCategorias)
-            probabilidades[categoria] = 1
-            valorEsperado.append(probabilidades)
+    for categoria in range(0,6):
+        for i in range(1, categoria):
+            for idImagen in range(1,81):
+                ruta=rutaOrigen+str(categoria)+"x"+str(i)+"/"+str(categoria)+"x"+str(i)+" ("+str(idImagen)+").jpg"
+                print(ruta)
+                imagen = cv2.imread(ruta)
+                imagen = cv2.cvtColor(imagen, cv2.COLOR_BGR2GRAY)
+                imagen = cv2.resize(imagen, (ancho, alto))
+                imagen = imagen.flatten()
+                imagen = imagen / 255
+                imagenesCargadas.append(imagen)
+                probabilidades = np.zeros(numeroCategorias)
+                probabilidades[categoria] = 1
+                valorEsperado.append(probabilidades)
     imagenesEntrenamiento = np.array(imagenesCargadas)
     valoresEsperados = np.array(valorEsperado)
     return imagenesEntrenamiento, valoresEsperados
-
+def cargarPrueba(rutaOrigen,numeroCategorias,limite,ancho,alto):
+    imagenesCargadas=[]
+    valorEsperado=[]
+    for categoria in range(0,6):
+        for i in range(1, categoria):
+            for idImagen in range(81,101):
+                ruta=rutaOrigen+str(categoria)+"x"+str(i)+"/"+str(categoria)+"x"+str(i)+" ("+str(idImagen)+").jpg"
+                print(ruta)
+                imagen = cv2.imread(ruta)
+                imagen = cv2.cvtColor(imagen, cv2.COLOR_BGR2GRAY)
+                imagen = cv2.resize(imagen, (ancho, alto))
+                imagen = imagen.flatten()
+                imagen = imagen / 255
+                imagenesCargadas.append(imagen)
+                probabilidades = np.zeros(numeroCategorias)
+                probabilidades[categoria] = 1
+                valorEsperado.append(probabilidades)
+    imagenesEntrenamiento = np.array(imagenesCargadas)
+    valoresEsperados = np.array(valorEsperado)
+    return imagenesEntrenamiento, valoresEsperados
 #################################
-ancho=28
-alto=28
+ancho=100
+alto=100
 pixeles=ancho*alto
 #Imagen RGB -->3
 numeroCanales=1
 formaImagen=(ancho,alto,numeroCanales)
-numeroCategorias=10
+numeroCategorias=21
 
-cantidaDatosEntrenamiento=[60,60,60,60,60,60,60,60,60,60]
-cantidaDatosPruebas=[20,20,20,20,20,20,20,20,20,20]
+cantidaDatosEntrenamiento=[80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80]
+cantidaDatosPruebas=[20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20]
 
 #Cargar las imágenes
-imagenes, probabilidades=cargarDatos("dataset/train/",numeroCategorias,cantidaDatosEntrenamiento,ancho,alto)
+imagenes, probabilidades=cargarDatos("dataset/",numeroCategorias,cantidaDatosEntrenamiento,ancho,alto)
 
 model=Sequential()
 #Capa entrada
@@ -69,7 +89,7 @@ model.compile(optimizer="adam",loss="categorical_crossentropy", metrics=["accura
 model.fit(x=imagenes,y=probabilidades,epochs=30,batch_size=60)
 
 #Prueba del modelo
-imagenesPrueba,probabilidadesPrueba=cargarDatos("dataset/test/",numeroCategorias,cantidaDatosPruebas,ancho,alto)
+imagenesPrueba,probabilidadesPrueba=cargarPrueba("dataset/",numeroCategorias,cantidaDatosPruebas,ancho,alto)
 resultados=model.evaluate(x=imagenesPrueba,y=probabilidadesPrueba)
 print("Accuracy=",resultados[1])
 
