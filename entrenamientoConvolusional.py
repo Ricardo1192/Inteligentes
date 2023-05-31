@@ -12,7 +12,7 @@ def cargarDatos(rutaOrigen,numeroCategorias,limite,ancho,alto):
     valorEsperado=[]
     for categoria in range(0,6):
         for i in range(1, categoria):
-            for idImagen in range(1,81):
+            for idImagen in range(61,68):
                 ruta=rutaOrigen+str(categoria)+"x"+str(i)+"/"+str(categoria)+"x"+str(i)+" ("+str(idImagen)+").jpg"
                 print(ruta)
                 imagen = cv2.imread(ruta)
@@ -32,7 +32,7 @@ def cargarPrueba(rutaOrigen,numeroCategorias,ancho,alto):
     valorEsperado=[]
     for categoria in range(0,6):
         for i in range(1, categoria):
-            for idImagen in range(81,101):
+            for idImagen in range(68,71):
                 ruta=rutaOrigen+str(categoria)+"x"+str(i)+"/"+str(categoria)+"x"+str(i)+" ("+str(idImagen)+").jpg"
                 print(ruta)
                 imagen = cv2.imread(ruta)
