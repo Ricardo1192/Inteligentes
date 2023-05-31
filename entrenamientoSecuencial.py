@@ -10,9 +10,9 @@ from keras.layers import InputLayer,Input,Conv2D, MaxPool2D,Reshape,Dense,Flatte
 def cargarDatos(rutaOrigen,numeroCategorias,limite,ancho,alto):
     imagenesCargadas=[]
     valorEsperado=[]
-    for categoria in range(0,6):
-        for i in range(1, categoria):
-            for idImagen in range(61,68):
+    for categoria in range(0,7):
+        for i in range(1, categoria+1):
+            for idImagen in range(1,71):
                 ruta=rutaOrigen+str(categoria)+"x"+str(i)+"/"+str(categoria)+"x"+str(i)+" ("+str(idImagen)+").jpg"
                 print(ruta)
                 imagen = cv2.imread(ruta)
@@ -22,7 +22,7 @@ def cargarDatos(rutaOrigen,numeroCategorias,limite,ancho,alto):
                 imagen = imagen / 255
                 imagenesCargadas.append(imagen)
                 probabilidades = np.zeros(numeroCategorias)
-                probabilidades[categoria+i] = 1
+                probabilidades[categoria+i-1] = 1
                 valorEsperado.append(probabilidades)
     imagenesEntrenamiento = np.array(imagenesCargadas)
     valoresEsperados = np.array(valorEsperado)
@@ -30,9 +30,9 @@ def cargarDatos(rutaOrigen,numeroCategorias,limite,ancho,alto):
 def cargarPrueba(rutaOrigen,numeroCategorias,limite,ancho,alto):
     imagenesCargadas=[]
     valorEsperado=[]
-    for categoria in range(0,6):
-        for i in range(1, categoria):
-            for idImagen in range(68,71):
+    for categoria in range(0,7):
+        for i in range(1, categoria+1):
+            for idImagen in range(71,81):
                 ruta=rutaOrigen+str(categoria)+"x"+str(i)+"/"+str(categoria)+"x"+str(i)+" ("+str(idImagen)+").jpg"
                 print(ruta)
                 imagen = cv2.imread(ruta)
@@ -42,7 +42,7 @@ def cargarPrueba(rutaOrigen,numeroCategorias,limite,ancho,alto):
                 imagen = imagen / 255
                 imagenesCargadas.append(imagen)
                 probabilidades = np.zeros(numeroCategorias)
-                probabilidades[categoria+i] = 1
+                probabilidades[categoria+i-1] = 1
                 valorEsperado.append(probabilidades)
     imagenesEntrenamiento = np.array(imagenesCargadas)
     valoresEsperados = np.array(valorEsperado)
