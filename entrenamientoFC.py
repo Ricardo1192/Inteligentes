@@ -12,7 +12,7 @@ def cargarDatos(rutaOrigen,numeroCategorias,limite,ancho,alto):
     valorEsperado=[]
     for categoria in range(0,7):
         for i in range(1, categoria+1):
-            for idImagen in range(61,68):
+            for idImagen in range(1,71):
                 ruta=rutaOrigen+str(categoria)+"x"+str(i)+"/"+str(categoria)+"x"+str(i)+" ("+str(idImagen)+").jpg"
                 print(ruta)
                 imagen = cv2.imread(ruta)
@@ -32,7 +32,7 @@ def cargarPrueba(rutaOrigen,numeroCategorias,ancho,alto):
     valorEsperado=[]
     for categoria in range(0,7):
         for i in range(1, categoria+1):
-            for idImagen in range(68,81):
+            for idImagen in range(71,81):
                 ruta=rutaOrigen+str(categoria)+"x"+str(i)+"/"+str(categoria)+"x"+str(i)+" ("+str(idImagen)+").jpg"
                 print(ruta)
                 imagen = cv2.imread(ruta)
@@ -87,7 +87,7 @@ resultados = model.evaluate(x=imagenesPrueba, y=probabilidadesPrueba)
 print("Accuracy=", resultados[1])
 
 # Guardar modelo
-ruta = "models/modeloA.h5"
+ruta = "models/modeloFC.h5"
 model.save(ruta)
 
 # Informe de estructura de la red
