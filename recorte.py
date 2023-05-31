@@ -1,7 +1,8 @@
 import cv2
+import numpy as np
 
 # Cargar la imagen
-img = cv2.imread("sample.png")
+img = cv2.imread("dataset/6x6/6x6 (60).jpg")
 
 # Convertir la imagen a escala de grises
 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)

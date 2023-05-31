@@ -6,7 +6,7 @@ import cv2
 class Prediccion():
     def __init__(self,ruta,ancho,alto):
 
-        self.modelo=load_model(ruta, custom_objects={"adam": tf.keras.optimizers.Adam()})
+        self.modelo=load_model(ruta, compile=False)
         self.alto=alto
         self.ancho=ancho
     def predecir(self,imagen):
