@@ -1,10 +1,12 @@
 from tensorflow.python.keras.models import load_model
+import tensorflow as tf
 import numpy as np
 import cv2
 
 class Prediccion():
     def __init__(self,ruta,ancho,alto):
-        self.modelo=load_model(ruta)
+
+        self.modelo=load_model(ruta, custom_objects={"adam": tf.keras.optimizers.Adam()})
         self.alto=alto
         self.ancho=ancho
     def predecir(self,imagen):

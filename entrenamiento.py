@@ -84,7 +84,7 @@ model.add(Dense(numeroCategorias,activation="softmax"))
 
 
 #Traducir de keras a tensorflow
-model.compile(optimizer="adam",loss="categorical_crossentropy", metrics=["accuracy"])
+model.compile(optimizer=tf.keras.optimizers.Adam(),loss="categorical_crossentropy", metrics=["accuracy"])
 #Entrenamiento
 model.fit(x=imagenes,y=probabilidades,epochs=30,batch_size=60)
 
