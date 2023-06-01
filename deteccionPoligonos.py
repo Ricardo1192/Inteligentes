@@ -50,7 +50,7 @@ while True:
         ancho=100
         alto=100
 
-        miModeloCNN=Prediccion("models/modeloA.h5",ancho,alto)
+        miModeloCNN=Prediccion("models/modeloD.h5",ancho,alto)
         cv2.imwrite("img.jpg", frame)
 
         claseResultado=miModeloCNN.predecir(frame)
