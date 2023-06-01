@@ -12,6 +12,7 @@ class Prediccion():
     def predecir(self,imagen):
         imagen = cv2.cvtColor(imagen, cv2.COLOR_BGR2GRAY)
         imagen = cv2.resize(imagen, (self.ancho, self.alto))
+        cv2.imwrite("resize.jpg", imagen)
         imagen = imagen.flatten()
         imagen = imagen / 255
         imagenesCargadas=[]

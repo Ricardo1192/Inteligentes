@@ -5,6 +5,9 @@ import cv2
 ###Importar componentes de la red neuronal
 from keras.models import Sequential
 from keras.layers import InputLayer,Input,Conv2D, MaxPool2D,Reshape,Dense,Flatten
+from sklearn.metrics import classification_report
+from sklearn.metrics import confusion_matrix
+from sklearn.metrics import precision_score, recall_score, f1_score
 ##################################
 
 def cargarDatos(rutaOrigen,numeroCategorias,limite,ancho,alto):
@@ -82,9 +85,52 @@ model.compile(optimizer=tf.keras.optimizers.Adam(), loss="categorical_crossentro
 model.fit(x=imagenes, y=probabilidades, epochs=30, batch_size=60)
 
 # Prueba del modelo
-imagenesPrueba, probabilidadesPrueba = cargarPrueba("dataset/", numeroCategorias, ancho, alto)
+imagenesPrueba, probabilidadesPrueba = cargarPrueba("dataset/", numeroCategorias, cantidaDatosPruebas, ancho, alto)
 resultados = model.evaluate(x=imagenesPrueba, y=probabilidadesPrueba)
-print("Accuracy=", resultados[1])
+
+# Accuracy
+accuracy = resultados[1]
+
+# Predicciones
+predicciones = model.predict(imagenesPrueba)
+etiquetas_predichas = np.argmax(predicciones, axis=1)
+
+# Etiquetas reales
+etiquetas_reales = np.argmax(probabilidadesPrueba, axis=1)
+
+# Precision, Recall y F1 Score
+
+
+precision = precision_score(etiquetas_reales, etiquetas_predichas, average='weighted')
+recall = recall_score(etiquetas_reales, etiquetas_predichas, average='weighted')
+f1 = f1_score(etiquetas_reales, etiquetas_predichas, average='weighted')
+
+# Loss (Pérdida)
+loss = resultados[0]
+
+# Épocas de entrenamiento
+epocas = 80  # O el número de épocas que especificaste durante el entrenamiento
+
+# Tiempo de respuesta
+# Calcula el tiempo de respuesta aquí según tus necesidades
+
+# Imprimir los resultados
+print("Accuracy:", accuracy)
+print("Precision:", precision)
+print("Recall:", recall)
+print("F1 Score:", f1)
+print("Loss:", loss)
+print("Épocas de entrenamiento:", epocas)
+
+predicciones = model.predict(imagenesPrueba)
+predicciones_etiquetas = np.argmax(predicciones, axis=1)
+etiquetas_verdaderas = np.argmax(probabilidadesPrueba, axis=1)
+matriz_confusion = confusion_matrix(etiquetas_verdaderas, predicciones_etiquetas)
+print("Matriz de confusión:")
+print(matriz_confusion)
+print('KNN Reports\n',classification_report(etiquetas_verdaderas, predicciones_etiquetas))
+
+
 
 # Guardar modelo
 ruta = "models/modeloFC.h5"

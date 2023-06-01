@@ -72,10 +72,16 @@ model.add(Reshape(formaImagen))
 
 #Capas Ocultas
 #Capas convolucionales
-model.add(Conv2D(kernel_size=5,strides=2,filters=16,padding="same",activation="relu",name="capa_1"))
+model.add(Conv2D(kernel_size=3,strides=2,filters=8,padding="same",activation="relu",name="capa_1"))
 model.add(MaxPool2D(pool_size=2,strides=2))
 
-model.add(Conv2D(kernel_size=3,strides=1,filters=36,padding="same",activation="relu",name="capa_2"))
+model.add(Conv2D(kernel_size=4,strides=1,filters=36,padding="same",activation="relu",name="capa_2"))
+model.add(MaxPool2D(pool_size=2,strides=2))
+
+model.add(Conv2D(kernel_size=5,strides=2,filters=64,padding="same",activation="relu",name="capa_3"))
+model.add(MaxPool2D(pool_size=2,strides=2))
+
+model.add(Conv2D(kernel_size=6,strides=1,filters=128,padding="same",activation="relu",name="capa_4"))
 model.add(MaxPool2D(pool_size=2,strides=2))
 
 #Aplanamiento
@@ -89,7 +95,7 @@ model.add(Dense(numeroCategorias,activation="softmax"))
 #Traducir de keras a tensorflow
 model.compile(optimizer=tf.keras.optimizers.Adam(),loss="categorical_crossentropy", metrics=["accuracy"])
 #Entrenamiento
-model.fit(x=imagenes,y=probabilidades,epochs=30,batch_size=60)
+model.fit(x=imagenes,y=probabilidades,epochs=50,batch_size=60)
 
 # Prueba del modelo
 imagenesPrueba, probabilidadesPrueba = cargarPrueba("dataset/", numeroCategorias, cantidaDatosPruebas, ancho, alto)
@@ -137,16 +143,6 @@ print("Matriz de confusión:")
 print(matriz_confusion)
 print('KNN Reports\n',classification_report(etiquetas_verdaderas, predicciones_etiquetas))
 
-
-predicciones = model.predict(imagenesPrueba)
-predicciones_etiquetas = np.argmax(predicciones, axis=1)
-etiquetas_verdaderas = np.argmax(probabilidadesPrueba, axis=1)
-
-# Calcula la matriz de confusión
-matriz_confusion = confusion_matrix(etiquetas_verdaderas, predicciones_etiquetas)
-print("Matriz de confusión:")
-print(matriz_confusion)
-print('KNN Reports\n',classification_report(etiquetas_verdaderas, predicciones_etiquetas))
 
 # Guardar modelo
 ruta="models/modeloA.h5"
