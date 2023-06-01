@@ -34,11 +34,7 @@ def detectarFigura(imagenOriginal,captura):
         if areas[i] >= areaMin:
             # Coordenadas vértices
             vertices = cv2.approxPolyDP(figuraActual, 0.05 * cv2.arcLength(figuraActual, True), True)
-            if len(vertices) == 4:
-                mensaje = "Cuadrado" + str(areas[i])
-                cv2.putText(imagenOriginal, mensaje, (10, 70), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2, cv2.LINE_AA)
-                cv2.drawContours(imagenOriginal, [figuraActual], 0, (0, 0, 255), 2)
-                
+            if len(vertices) == 4:                
                 if captura:
                     
                     x, y, w, h = cv2.boundingRect(figuraActual)  # Get the bounding rectangle coordinates
@@ -54,13 +50,11 @@ def detectarFigura(imagenOriginal,captura):
 video=cv2.VideoCapture(0)
 constructorVentana()
 captura=False
+suma=0
+actual=""
 while True:
     _,frame=video.read()
-    
-   
-    
     detectarFigura(frame,captura)
-    cv2.imshow("Imagen",frame)
 
 
     k=cv2.waitKey(5) & 0xFF
@@ -69,14 +63,19 @@ while True:
         ancho=100
         alto=100
         captura=True
-        miModeloCNN=Prediccion("models/modeloA.h5",ancho,alto)
+        miModeloCNN=Prediccion("models/modeloD.h5",ancho,alto)
         cv2.imwrite("img.jpg", frame)
 
         claseResultado=miModeloCNN.predecir(frame)
         print("La imagen cargada es ",clases[claseResultado])
+        actual=clases[claseResultado]
+        suma=suma+int(clases[claseResultado])
     elif k==27:
         print("Saliendo")
         break
+    cv2.putText(frame, "Acumulado="+str(suma), (10, 70), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2, cv2.LINE_AA)
+    cv2.putText(frame, "Actual="+str(actual), (10, 100), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2, cv2.LINE_AA)
+    cv2.imshow("Imagen",frame)
 video.release()
 cv2.destroyAllWindows()
 
