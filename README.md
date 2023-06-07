@@ -17,7 +17,7 @@ Matriz de confusión:\
  [ 0  0  0  0  0  0  0  0 20  0  0]\
  [ 0  0  0  0  0  0  0  0  0 10  0]\
  [ 0  0  0  0  0  0  0  0  0  0 10]]\
-KNN Reports
+
                precision    recall  f1-score   support
 
            1       1.00      1.00      1.00        10
@@ -48,7 +48,7 @@ Matriz de confusión ConvolusionalR:\
  [ 0  0  0  0  0  0  0  3 17  0  0]\
  [ 0  0  0  0  0  0  0  0  0 10  0]\
  [ 0  0  0  0  0  0  0  0  0  0 10]]\
-KNN Reports
+
                precision    recall  f1-score   support
 
            1       0.91      1.00      0.95        10
@@ -77,7 +77,7 @@ Matriz de confusión:
  [ 0  0  0  0  0  0  0  0 20  0  0]\
  [ 0  0  0  0  0  0  0  0  0 10  0]\
  [ 0  0  0  0  0  0  0  0  0  0 10]]\
-KNN Reports
+
                precision    recall  f1-score   support
 
            1       1.00      1.00      1.00        10
@@ -108,7 +108,7 @@ Matriz de confusión ConvolusionalT:
  [ 0  0  0  0  0  0  0  0 20  0  0]\
  [ 0  0  0  0  0  0  0  0  0 10  0]\
  [ 0  0  0  0  0  0  0  0  3  0  7]]\
-KNN Reports
+
                precision    recall  f1-score   support
 
            1       1.00      1.00      1.00        10
@@ -137,7 +137,7 @@ Matriz de confusión Convolucional y capas fully connected :
  [ 0  0  0  0  0  0  0  0 20  0  0]\
  [ 0  0  0  0  0  0  0  0  0 10  0]\
  [ 0  0  0  0  0  0  0  0  0  0 10]]\
-KNN Reports
+
                precision    recall  f1-score   support
 
            1       1.00      1.00      1.00        10
