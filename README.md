@@ -1,5 +1,5 @@
 # Inteligentes
-video:https://youtu.be/dTXHQBMncU0
+video:https://youtu.be/dTXHQBMncU0 \
 ![image](https://github.com/Ricardo1192/Inteligentes/assets/56328678/528f8d5a-38c4-45f1-b6ac-5bef042cc5b1)
 
 
