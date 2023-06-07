@@ -5,17 +5,17 @@ video:https://youtu.be/dTXHQBMncU0
 
 El modelo a elegir sería el ConvolucionalD puesto que es el modelo con las métricas básicamente perfectas sin pérdida de información. Además es de los que requiere menos épocas de entrenamiento para llegar a un buen resultado.
 normal
-Matriz de confusión:
-[[10  0  0  0  0  0  0  0  0  0  0]
- [ 0 10  0  0  0  0  0  0  0  0  0]
- [ 0  0 20  0  0  0  0  0  0  0  0]
- [ 0  0  0 19  1  0  0  0  0  0  0]
- [ 0  0  0  0 30  0  0  0  0  0  0]
- [ 0  0  0  0  4 26  0  0  0  0  0]
- [ 0  0  0  0  2  0 28  0  0  0  0]
- [ 0  0  0  0  0  0  0 20  0  0  0]
- [ 0  0  0  0  0  0  0  0 20  0  0]
- [ 0  0  0  0  0  0  0  0  0 10  0]
+Matriz de confusión:\
+[[10  0  0  0  0  0  0  0  0  0  0]\
+ [ 0 10  0  0  0  0  0  0  0  0  0]\
+ [ 0  0 20  0  0  0  0  0  0  0  0]\
+ [ 0  0  0 19  1  0  0  0  0  0  0]\
+ [ 0  0  0  0 30  0  0  0  0  0  0]\
+ [ 0  0  0  0  4 26  0  0  0  0  0]\
+ [ 0  0  0  0  2  0 28  0  0  0  0]\
+ [ 0  0  0  0  0  0  0 20  0  0  0]\
+ [ 0  0  0  0  0  0  0  0 20  0  0]\
+ [ 0  0  0  0  0  0  0  0  0 10  0]\
  [ 0  0  0  0  0  0  0  0  0  0 10]]
 KNN Reports
                precision    recall  f1-score   support
