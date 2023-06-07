@@ -33,8 +33,8 @@ KNN Reports
           11       1.00      1.00      1.00        10
 
     accuracy                           0.97       210
-   macro avg       0.98      0.98      0.98       210
-weighted avg       0.97      0.97      0.97       210
+    macro avg       0.98      0.98      0.98       210
+    weighted avg       0.97      0.97      0.97       210
 
 Matriz de confusión ConvolusionalR:\
 [[10  0  0  0  0  0  0  0  0  0  0]\
@@ -93,8 +93,8 @@ KNN Reports
           11       1.00      1.00      1.00        10
 
     accuracy                           1.00       210
-   macro avg       1.00      1.00      1.00       210
-weighted avg       1.00      1.00      1.00       210
+    macro avg       1.00      1.00      1.00       210
+    weighted avg       1.00      1.00      1.00       210
 
 Matriz de confusión ConvolusionalT:
 [[10  0  0  0  0  0  0  0  0  0  0]\
@@ -153,7 +153,7 @@ KNN Reports
           11       1.00      1.00      1.00        10
 
     accuracy                           0.96       210
-   macro avg       0.97      0.97      0.97       210
-weighted avg       0.96      0.96      0.96       210
+    macro avg       0.97      0.97      0.97       210
+    weighted avg       0.96      0.96      0.96       210
 
 
